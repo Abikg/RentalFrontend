@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { logIn } from "../services/user-service";
+import { doLogin } from "../auth";
 
 interface Props {
   property: string;
@@ -30,6 +31,11 @@ function LoginForm({ setShowSignup }: SignupProps) {
     logIn(data)
       .then((resp) => {
         console.log(resp);
+        //save the jwt in local storage
+        doLogin(resp.data, () => {
+          console.log("user logged in and stored");
+          //redirect to home page
+        });
       })
       .catch((error) => {
         console.log(error);
