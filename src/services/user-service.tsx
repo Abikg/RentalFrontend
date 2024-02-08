@@ -21,3 +21,5 @@ export const logIn = async (userLoginInfo: LoginProps) => {
   const response = await myAxios.post("/api/auth/login", userLoginInfo);
   return response;
 };
+
+//use privateAxios for the api that need jwt authentication
